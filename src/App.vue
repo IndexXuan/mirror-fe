@@ -23,7 +23,6 @@
       title="系统提示"
       button-text="确认"
     >
-    >
     </app-alert>
 
     <router-view 
@@ -105,40 +104,36 @@
 </style>
 
 <script>
-  import $ from 'jquery'
-  import './apis/getTodos'
-
   import 'whatwg-fetch'
   import FastClick from 'fastclick'
-
+  import ls from './services/ls'
   import store from './vuex/store'
   import {
+    setToken,
     showLoading,
     hideLoading,
     setUserInfo,
     setTodos,
     setMeFeeds
   } from './vuex/actions'
-  import { getLoadingState } from './vuex/getters'
-
+  import { getApiBaseUrl as apiBaseUrl, getLoadingState } from './vuex/getters'
   import ProgressBar from 'vux-components/progress'
   import LoadingIcon from 'vux-components/loading'
   import AppAlert from 'vux-components/alert'
-
-  import TodoView from './views/Todo'
-  import TabBar from './components/TabBar.vue'
-
-  import AttendanceView from './views/Attendance'
-
-  import MeView from './views/Me'
+  import TodoView from './containers/Todo'
+  import AttendanceView from './containers/Attendance'
+  import MeView from './containers/Me'
+  import TabBar from 'components/TabBar.vue'
   
   export default {
     store,
     vuex: {
       getters: {
+        apiBaseUrl,
         getLoadingState
       },
       actions: {
+        setToken,
         showLoading,
         hideLoading,
         setUserInfo,
@@ -157,6 +152,15 @@
     },
     created () {
       FastClick.attach(document.body)
+      this.menus = store.state.menus
+      this.checkLogin().then((status) => {
+        if (status.isLogin) {
+          // this.fetchUserInfo()
+        } else {
+          this.$router.go('login')
+        }
+      })
+
       setTimeout(() => {
         this.showLoading()
         this.loading()
@@ -181,23 +185,7 @@
 
         loadingText: '',
 
-        menus: [
-          {
-            'label': '待办',
-            'link': '/todo',
-            'icon': './static/images/todo'
-          },
-          {
-            'label': '考勤',
-            'link': '/attendance',
-            'icon': './static/images/attendance'
-          },
-          {
-            'label': '记录',
-            'link': '/me',
-            'icon': './static/images/me'
-          }
-        ]
+        menus: []
       }
     },
     computed: {
@@ -206,21 +194,41 @@
       }
     },
     methods: {
+      checkLogin () {
+        return new Promise((resolve, reject) => {
+          let token = ls.get('MIRROR_TOKEN')
+          if (token) {
+            this.setToken(token)
+            resolve({isLogin: true})
+          }
+          reject({isLogin: false})
+        })
+      },
+      fetchUserInfo () {
+        fetch(`${this.apiBaseUrl}/user`, {
+          method: 'GET',
+          headers: {
+            'authentication': `Bearer ${this.token}`
+          }
+        }).then((res) => {
+          console.log(res.json())
+        }).catch((err) => {
+          console.error('fetch user info error', err)
+        })
+      },
       fetchTodos () {
         return new Promise((resolve, reject) => {
-          $.ajax({
-            type: 'GET',
-            url: 'http://a.com/todos'
-          }).done((data) => {
-            const l = JSON.parse(data)
-            const lists = l && l.list
+          fetch(this.apiBaseUrl + '/todos').then((res) => {
+            return res.json()
+          }).then((l) => {
+            const lists = l && l.data
             lists.forEach((item) => (item.done = false))
             resolve(lists)
-          }).fail((err) => {
-            reject(new Error(err))
-            console.error(err)
-          }).always(() => {
             this.hideLoading()
+          }).catch((err) => {
+            reject(new Error(err))
+            this.hideLoading()
+            console.error('getTodos api failed', err)
           })
         })
       },

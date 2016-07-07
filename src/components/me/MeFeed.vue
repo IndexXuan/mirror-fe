@@ -28,7 +28,7 @@
 </template>
 
 <style lang="scss">
-  @import "../vars";
+  @import "../../vars";
 
   .fl {
     float: left;
@@ -66,7 +66,7 @@
 
 <script>
   import 'weui'
-  import { getMeFeeds } from '../vuex/getters'
+  import { getMeFeeds } from '../../vuex/getters'
   import BlurBanner from 'vux-components/blur'
   import StarRater from 'vux-components/rater'
 

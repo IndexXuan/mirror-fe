@@ -41,9 +41,14 @@
 </template>
 
 <script>
-  import $ from 'jquery'
+  import { getApiBaseUrl as apiBaseUrl } from '../vuex/getters'
 
   export default {
+    vuex: {
+      getters: {
+        apiBaseUrl
+      }
+    },
     components: {
     },
     data () {
@@ -53,12 +58,13 @@
     },
     methods: {
       fetchData () {
-        $.ajax({
-          method: 'GET',
-          url: 'http://202.195.67.56/adm/index.php/Index/getattend?user_id=3020031516'
-        }).done((data) => {
-          this.lists = JSON.parse(data)
-        })
+        // $.ajax({
+        //   method: 'GET',
+        //   url: 'http://202.195.67.56/adm/index.php/Index/getattend?user_id=3020031516'
+        // }).done((data) => {
+        //   this.lists = JSON.parse(data)
+        // })
+        fetch(`${apiBaseUrl}/`)
       }
     },
     computed: {

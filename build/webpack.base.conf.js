@@ -3,6 +3,13 @@ var config = require('../config')
 var utils = require('./utils')
 var projectRoot = path.resolve(__dirname, '../')
 
+/**
+ * Note on 20160706
+ * 1. add alias vux
+ * 2. add vux/src/*.js loader and should not exclude node_modules of it, 
+ *    very important and the order of `vux/src/*.js and *.js` cannot be wrong!
+ */
+
 module.exports = {
   entry: {
     app: './src/main.js'
@@ -46,14 +53,14 @@ module.exports = {
         loader: 'vue'
       },
       {
-        test: /vux.src.*?js$/,
-        loader: 'babel'
-      },
-      {
         test: /\.js$/,
         loader: 'babel',
         include: projectRoot,
         exclude: /node_modules/
+      },
+      {
+        test: /vux.src.*?js$/,
+        loader: 'babel'
       },
       {
         test: /\.json$/,

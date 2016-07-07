@@ -22,12 +22,10 @@
 </template>
 
 <script>
-  import $ from 'jquery'
   import { setAttendanceCurrentView } from '../vuex/actions'
   import { getAttendanceCurrentView } from '../vuex/getters'
-
-  import StartAttendance from './StartAttendance.vue'
-  import DoAttendance from './DoAttendance.vue'
+  import StartAttendance from '../components/attendance/StartAttendance.vue'
+  import DoAttendance from '../components/attendance/DoAttendance.vue'
 
   export default {
     vuex: {
@@ -66,15 +64,15 @@
       'on-confirm': function () {
         // this.currentView = 'DoAttendance'
         this.setAttendanceCurrentView('DoAttendance')
-        $.ajax({
-          method: 'POST',
-          url: 'http://202.195.67.56/adm/index.php/Index/doattentance',
-          data: {
-            'course_id': '1',
-            'user_id': '3020031615',
-            'time': '2016-05-27'
-          }
-        })
+        // $.ajax({
+        //   method: 'POST',
+        //   url: 'http://202.195.67.56/adm/index.php/Index/doattentance',
+        //   data: {
+        //     'course_id': '1',
+        //     'user_id': '3020031615',
+        //     'time': '2016-05-27'
+        //   }
+        // })
       }
     }
   }

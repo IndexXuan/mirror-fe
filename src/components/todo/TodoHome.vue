@@ -45,16 +45,6 @@
       </todo-tab-item>
     </todo-tab>
 
-    <!--
-    <todo-scroller
-      :height="scrollerHeight"
-      :lock-x="true"
-      :use-pulldown="true"
-      :pulldown-config="pulldownConfig"
-      :scrollbar-y="true"
-    >
-    </todo-scroller>
-    -->
     <div class="scroll-container" style="-webkit-overflow-scrolling: touch;overflow: scroll;">
       <div class="weui_cells weui_cells_checkbox" style="margin-top: 0;">
         <todo-item 
@@ -71,13 +61,11 @@
 <script>
   import 'weui'
   import 'animate.css'
-
-  import { getTodos, getTodoActiveTabIndex } from '../vuex/getters'
-  import { setTodoActiveTabIndex, setTodos } from '../vuex/actions'
-
+  import { getTodos, getTodoActiveTabIndex } from '../../vuex/getters'
+  import { setTodoActiveTabIndex, setTodos } from '../../vuex/actions'
   import TodoTab from 'vux-components/tab'
   import TodoTabItem from 'vux-components/tab-item'
-  import TodoItem from '../components/TodoItem.vue'
+  import TodoItem from 'components/TodoItem.vue'
 
   export default {
     vuex: {

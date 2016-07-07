@@ -8,25 +8,25 @@ export default function routerConfig (router) {
   router.map({
     '/todo': {
       name: 'todo',
-      component: require('./views/Todo.vue')
+      component: require('./containers/Todo.vue')
     },
 
     '/attendance': {
       name: 'attendance',
-      component: require('./views/Attendance.vue')
+      component: require('./containers/Attendance.vue')
     },
     '/me': {
       name: 'me',
-      component: require('./views/Me.vue')
+      component: require('./containers/Me.vue')
     },
     '/result': {
       name: 'result',
-      component: require('./views/result.vue')
+      component: require('./containers/result.vue')
     },
 
     // not found handler
     '*': {
-      component: require('./views/Todo.vue')
+      component: require('./containers/Todo.vue')
     }
   })
 

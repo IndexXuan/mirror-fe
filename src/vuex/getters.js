@@ -6,6 +6,10 @@
  *  Date   : Tue 24 May 2016 05:04:08 PM CST
  */
 
+export function getApiBaseUrl (state) {
+  return state.apiBaseUrl
+}
+
 export function getLoadingState (state) {
   return state.showLoading
 }

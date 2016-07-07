@@ -1,5 +1,5 @@
 <style lang="scss">
-@import "../vars";
+@import "../../vars";
 
 .fl {
   float: left;
@@ -62,9 +62,8 @@
     setAttendanceCurrentView,
     setMeCurrentView,
     doneOneTodoItem
-  } from '../vuex/actions'
-  import { getTodoDetailItem } from '../vuex/getters'
-
+  } from '../../vuex/actions'
+  import { getTodoDetailItem } from '../../vuex/getters'
   import DialogConfirm from 'vux-components/confirm'
 
   export default {

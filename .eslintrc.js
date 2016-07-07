@@ -14,10 +14,9 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
 
     'no-multiple-empty-lines': [2, {'max': 2}],
-    'padded-blocks': [0]
-
+    'padded-blocks': [0],
+    'quotes': 0
   },
-
   globals: {
     "localStorage": true,
     'fetch': true

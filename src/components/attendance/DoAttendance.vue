@@ -63,9 +63,9 @@
 
 <script>
   import IconImage from 'vux-components/icon'
-  import QrCode from '../components/QrCode.vue'
-  import { getUserInfo, getTodoDetailItem } from '../vuex/getters'
-  import { setAttendanceCurrentView } from '../vuex/actions'
+  import QrCode from 'components/QrCode.vue'
+  import { getUserInfo, getTodoDetailItem } from '../../vuex/getters'
+  import { setAttendanceCurrentView } from '../../vuex/actions'
 
   export default {
     vuex: {

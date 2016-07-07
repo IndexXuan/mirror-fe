@@ -12,6 +12,24 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
+  apiBaseUrl: 'http://localhost:3003',
+  menus: [
+    {
+      'label': '待办',
+      'link': '/todo',
+      'icon': './static/images/todo'
+    },
+    {
+      'label': '考勤',
+      'link': '/attendance',
+      'icon': './static/images/attendance'
+    },
+    {
+      'label': '记录',
+      'link': '/me',
+      'icon': './static/images/me'
+    }
+  ],
   userInfo: {},
   showLoading: false,
   activeTab: window.location.href.split('#!')[1],
@@ -29,6 +47,9 @@ const state = {
 
 // global mutations
 const mutations = {
+  SET_TOKEN (state, token) {
+    state.token = token
+  },
   SHOW_LOADING (state) {
     state.showLoading = true
   },

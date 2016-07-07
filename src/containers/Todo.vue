@@ -1,6 +1,3 @@
-<style>
-</style>
-
 <template>
   <div id="">
     <component :is="currentView" keep-alive></component>
@@ -10,8 +7,8 @@
 <script>
   import { setTodoCurrentView } from '../vuex/actions'
   import { getTodoCurrentView } from '../vuex/getters'
-  import TodoHome from './TodoHome.vue'
-  import TodoDetail from './TodoDetail.vue'
+  import TodoHome from '../components/todo/TodoHome.vue'
+  import TodoDetail from '../components/todo/TodoDetail.vue'
 
   export default {
     vuex: {

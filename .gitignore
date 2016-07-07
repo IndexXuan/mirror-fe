@@ -1,7 +1,7 @@
 node_modules/
 dist/
+docs/
 npm-debug.log
 selenium-debug.log
 test/unit/coverage
 test/e2e/reports
-todo.md

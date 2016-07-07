@@ -34,7 +34,7 @@
 </template>
 
 <style lang="scss">
-  @import "../vars";
+  @import "../../vars";
 
   .me-assess-container {
     padding: 10px;
@@ -62,8 +62,8 @@
 <script>
   import 'weui'
   import moment from 'momentjs'
-  import { setMeCurrentView, addOneFeed } from '../vuex/actions'
-  import { getTodoDetailItem } from '../vuex/getters'
+  import { setMeCurrentView, addOneFeed } from '../../vuex/actions'
+  import { getTodoDetailItem } from '../../vuex/getters'
   import StarRater from 'vux-components/rater'
   import AssessTextarea from 'vux-components/x-textarea'
   import AssessToast from 'vux-components/toast'
@@ -84,7 +84,6 @@
       AssessToast
     },
     ready () {
-      console.log(moment)
     },
     computed: {
       item () {

@@ -39,8 +39,8 @@
 <script>
   import 'weui'
   import { getMeCurrentView } from '../vuex/getters'
-  import MeFeed from '../views/MeFeed.vue'
-  import MeAssess from '../views/MeAssess.vue'
+  import MeFeed from '../components/me/MeFeed.vue'
+  import MeAssess from '../components/me/MeAssess.vue'
 
   export default {
     vuex: {

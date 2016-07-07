@@ -13,7 +13,7 @@
 
     </div>
     <div class="weui_tabbar">
-      <a v-for="menu in menus" @click="activeMe(menu)" v-link="{ path: menu.link }" class="weui_tabbar_item weui_bar_item_on">
+      <a v-for="menu in menus" @click="activeMe(menu)" class="weui_tabbar_item weui_bar_item_on">
         <div class="weui_tabbar_icon">
           <span v-show="false" class="vux-reddot"></span>
           <img :src="menu.icon + ( active == menu[idKey]? '-active.png': '.png' )" :alt="menu.label">
@@ -64,6 +64,7 @@
     methods: {
       activeMe (menu) {
         this.changeTab(menu[this.idKey])
+        this.$router.go(menu.link)
       }
     },
     watch: {

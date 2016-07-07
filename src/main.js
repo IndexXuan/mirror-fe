@@ -3,13 +3,12 @@
   Date   : 2016年05月12日 星期四 13时02分29秒
 */
 
+import 'babel-polyfill'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
 import { sync } from 'vuex-router-sync'
 import routerConfig from './router'
 import store from './vuex/store'
-
 import http from 'vue-resource'
 import filters from './filters'
 
@@ -37,11 +36,8 @@ Vue.http.interceptors.push({
   }
 })
 
-// export settings to global
-// window.mirrorConfig = config
-
 // instance all registed fitlers
-Object.keys(filters).forEach((filterName) => Vue.filter(filterName, filters[filterName]))
+Object.keys(filters).forEach(filterName => Vue.filter(filterName, filters[filterName]))
 
 // create Router
 const router = new VueRouter({
@@ -67,7 +63,6 @@ if (process.NODE_ENV !== 'production') {
 
 // bootstrap the app, bind into dom'root node with id #app
 const App = Vue.extend(require('./App.vue'))
-// router.start(App, '#app')
 
 /* eslint-disable no-new */
 new Vue({
@@ -75,4 +70,3 @@ new Vue({
   components: { App }
 })
 router.start(App, '#app')
-

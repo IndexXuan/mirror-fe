@@ -7,7 +7,7 @@
  */
 
 import { STORAGE_KEY } from './store'
-import createLogger from 'vuex/middlewares/logger'
+import createLogger from './logger'
 
 const localStorageMiddleware = {
   onMutation (mutation, { todos }) {
